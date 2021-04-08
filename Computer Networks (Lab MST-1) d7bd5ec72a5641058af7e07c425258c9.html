@@ -1,0 +1,629 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Computer Networks (Lab MST-1)</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="9157aafe-55c9-4147-ba10-e682391cffe0" class="page sans"><header><h1 class="page-title">Computer Networks (Lab MST-1)</h1></header><div class="page-body"><h2 id="de99b9c3-45b9-4801-b19d-edcc315e6cf5" class=""><code><strong>Aaveg Gupta</strong></code><code>CS1 0818CS181001</code></h2><h2 id="b4285b2b-d42b-4ad9-87bc-b92ade1b58e8" class=""><mark class="highlight-yellow_background">1. What is the current IP address and Subnet Mask of the PC you are using?</mark></h2><p id="f958c21d-d689-4ad5-8ecb-9ac44d9e8eda" class=""><strong>Command :</strong>  ipconfig</p><p id="895a72a0-6f4a-4f6f-a428-de942468dcc6" class=""><strong>IPv4 Address</strong>. . . . . . . . . . . : 192.168.43.204</p><p id="4e1811a2-c2b2-4824-adc7-8515598a385a" class=""><strong>Subnet Mask</strong> . . . . . . . . . . . : 255.255.255.0</p><figure id="d7bd5ec7-2a56-4105-8af7-e07c425258c9" class="image"><a href="Computer%20Networks%20(Lab%20MST-1)%20d7bd5ec72a5641058af7e07c425258c9/q1.jpg"><img style="width:677px" src="Computer%20Networks%20(Lab%20MST-1)%20d7bd5ec72a5641058af7e07c425258c9/q1.jpg"/></a></figure><h2 id="3ed37417-6ced-420c-8337-a4695a338c18" class=""><mark class="highlight-yellow_background">2. Write MAC address of the PC that you are using?</mark></h2><p id="23e74444-94a8-4816-a771-945f521feedd" class=""><strong>Command:</strong>  ipconfig/all</p><p id="0bf46ceb-48b6-473a-b48a-5dca56b230d1" class=""><strong>MAC Address</strong>. . . . . . . . . : 34-2E-B7-08-AC-51</p><figure id="08006259-88b4-47e3-b8df-a023311e2126" class="image"><a href="Computer%20Networks%20(Lab%20MST-1)%20d7bd5ec72a5641058af7e07c425258c9/q2.jpg"><img style="width:732px" src="Computer%20Networks%20(Lab%20MST-1)%20d7bd5ec72a5641058af7e07c425258c9/q2.jpg"/></a></figure><h2 id="dd31864c-a686-4728-9870-ed37d84b36ab" class=""><mark class="highlight-yellow_background">3. Mention class of IP address for answer 1 above?</mark></h2><p id="04c28125-160a-4cbe-b0ae-fd019f4a4d7e" class=""><strong>CLASS C : </strong><em>because the IP address belonging to Class C range from 192.0.0.a to 223.255.255.a.(where a ranges from 0 to 255)</em></p><h2 id="a0834d8a-cc35-40c0-ba22-a2bdb75a217e" class=""><mark class="highlight-yellow_background">4. What is the current default gateway IP of your PC?</mark></h2><p id="b1336a45-749e-4b8c-9535-9e82a30e690b" class=""><strong>Command:</strong>  ipconfig/all</p><p id="23c6a6f4-5bac-4151-9008-ce8e74dd9b5a" class=""><strong>Default Gateway</strong> . . . . . . . . . : 192.168.43.1</p><figure id="4b711039-0d22-4393-82bd-3d3ff2f33776" class="image"><a href="Computer%20Networks%20(Lab%20MST-1)%20d7bd5ec72a5641058af7e07c425258c9/q4.jpg"><img style="width:775px" src="Computer%20Networks%20(Lab%20MST-1)%20d7bd5ec72a5641058af7e07c425258c9/q4.jpg"/></a></figure><h2 id="d0278920-9e2a-4b51-849d-e9bbdaf2077e" class=""><mark class="highlight-yellow_background">5. How you configure new IP address and Subnet Mask of your PC?</mark></h2><ol id="4ab12b96-e17b-4797-bf8d-5e1eb06c0be3" class="numbered-list" start="1"><li>From your Windows Desktop, click &quot;Start&quot;</li></ol><ol id="b695d111-4241-4be8-b6dc-4c88df177cab" class="numbered-list" start="2"><li>Click on “Control Panel”</li></ol><ol id="95e31f38-1586-4475-a58d-1b7133ddb9a1" class="numbered-list" start="3"><li>Click on “Network and Internet Connections</li></ol><ol id="1b9c8f5b-ef75-449c-88ad-497ffd757ee5" class="numbered-list" start="4"><li>Click on “Local Area Connection”</li></ol><ol id="38215735-577d-4033-ad28-e8a6823c0278" class="numbered-list" start="5"><li>Click “Properties” on the “Local Area Connection Status” panel.</li></ol><ol id="40245a09-8b35-4e97-a6e1-3203f9ff2876" class="numbered-list" start="6"><li>You should find a check mark already in the box next to “Internet Protocol (TCP/IP)”. Double Click “Internet Protocol (TCP/IP)”.</li></ol><ol id="b7931f85-746a-468e-93ea-f90209ec095f" class="numbered-list" start="7"><li>Select &quot;Obtain an IP Address automatically”</li></ol><ol id="4c8a8532-dd06-41dc-9079-cbb536909fe8" class="numbered-list" start="8"><li>Select “Obtain DNS server addresses automatically”</li></ol><ol id="109a0196-f53c-48bf-9b3d-dbd3afc61e45" class="numbered-list" start="9"><li>Click the “OK” button</li></ol><ol id="2d849eb1-6d16-4583-8704-fa5fbb72ea0c" class="numbered-list" start="10"><li>Click the next “OK” button</li></ol><ol id="dcfe6f8a-e8c5-4fa8-ba66-e5739c34bddf" class="numbered-list" start="11"><li>Close the “Network Connections” panel</li></ol><h2 id="5fd0204a-b54d-431e-93fd-71cd7fe42a11" class=""><mark class="highlight-yellow_background">6. Verify LAN connectivity till your gateway using 10 packets?</mark></h2><p id="0a8ae9a7-35ae-4906-903a-9a38ba508470" class=""><strong>Command:</strong> ping -n 10 192.168.43.204</p><figure id="59a133f3-a6d8-4938-9744-d2fcf5ef6224" class="image"><a href="Computer%20Networks%20(Lab%20MST-1)%20d7bd5ec72a5641058af7e07c425258c9/q6.jpg"><img style="width:566px" src="Computer%20Networks%20(Lab%20MST-1)%20d7bd5ec72a5641058af7e07c425258c9/q6.jpg"/></a></figure><h2 id="3ef8aa53-d388-4679-879f-da81200da907" class=""><mark class="highlight-yellow_background">7. Verify WAN connectivity till </mark><mark class="highlight-yellow_background"><a href="http://www.indoreinstitute.com">www.indoreinstitute.com</a></mark><mark class="highlight-yellow_background">?</mark></h2><p id="1652ba8d-193b-4127-b919-8422c50c296c" class=""><strong>Command:</strong> ping www.indoreinstitute.com</p><figure id="d73a8c36-e1d4-42ba-bc94-302b0b18c0fa" class="image"><a href="Computer%20Networks%20(Lab%20MST-1)%20d7bd5ec72a5641058af7e07c425258c9/q7.jpg"><img style="width:618px" src="Computer%20Networks%20(Lab%20MST-1)%20d7bd5ec72a5641058af7e07c425258c9/q7.jpg"/></a></figure><h2 id="f7502f53-4221-4a13-84f1-cae8377e5117" class=""><mark class="highlight-yellow_background">8. What is Average Round Trip Time for answer 5 above?</mark></h2><p id="563ab851-374d-40c2-93ce-69480ab33f6c" class=""><strong>Average: </strong>118ms</p><figure id="84dd15fa-a945-4a05-917d-a1aa12c9220f" class="image"><a href="Computer%20Networks%20(Lab%20MST-1)%20d7bd5ec72a5641058af7e07c425258c9/q8.jpg"><img style="width:610px" src="Computer%20Networks%20(Lab%20MST-1)%20d7bd5ec72a5641058af7e07c425258c9/q8.jpg"/></a></figure><p id="ddbae52c-afac-45bb-bce2-ffeffced147a" class="">
+</p><h2 id="77517974-55a2-432c-8d55-a20e6e856345" class="">9<mark class="highlight-yellow_background">. What is the IP address of </mark><mark class="highlight-yellow_background"><a href="http://www.indoreinstitute.com">www.indoreinstitute.com</a></mark><mark class="highlight-yellow_background">?</mark></h2><p id="ebca6f7c-e7da-4b2b-a109-274a4a2c4a65" class=""><strong>Command:</strong> ping www.indoreinstitute.com</p><p id="381b3b88-6383-4ddd-b100-8d7157b25b3e" class=""><strong>indoreinstitute.com: </strong>166.62.30.117</p><h2 id="00439e67-9b99-43b0-bad0-91e46c7e6ce2" class=""><mark class="highlight-yellow_background">10. Check intermediate hops using appropriate utility/command to </mark><mark class="highlight-yellow_background"><a href="http://www.indoreinstitute.com">www.indoreinstitute.com</a></mark><mark class="highlight-yellow_background">?</mark></h2><p id="9f920045-14ff-41b2-8a53-2cddc91b7e76" class=""><strong>Command:</strong> tracert www.indoreinstitute.com</p><figure id="39ba7d76-a63b-4903-87f4-15ef29f42359" class="image"><a href="Computer%20Networks%20(Lab%20MST-1)%20d7bd5ec72a5641058af7e07c425258c9/q9.jpg"><img style="width:838px" src="Computer%20Networks%20(Lab%20MST-1)%20d7bd5ec72a5641058af7e07c425258c9/q9.jpg"/></a></figure><p id="71d456b5-b885-4420-9e19-8a1f1159b24a" class="">
+</p></div></article></body></html>
